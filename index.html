@@ -1,0 +1,225 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment — IPUNGG SHOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #00b894;
+      --card-bg: rgba(255,255,255,0.92);
+      --glass: rgba(255,255,255,0.06);
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background-image: url('https://files.catbox.moe/cnhu8b.jpg');
+      background-size: cover;
+      background-position: center;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }/* subtle overlay to improve contrast */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+  z-index:0;
+}
+
+.container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:980px;
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:28px;
+  align-items:start;
+}
+
+/* left: info / description */
+.left{
+  color:var(--card-bg);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  padding:28px;
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px) saturate(120%);
+  border:1px solid rgba(255,255,255,0.08);
+  min-height:320px;
+}
+
+.brand{
+  display:flex;align-items:center;gap:14px
+}
+.logo{
+  width:64px;height:64px;border-radius:12px;background:var(--glass);display:grid;place-items:center;font-weight:700;color:white;font-size:20px
+}
+h1{margin:0;color:white;font-size:28px}
+p.lead{margin:0;color:rgba(255,255,255,0.9)}
+
+/* right: payment card */
+.card{
+  background:var(--card-bg);
+  border-radius:14px;padding:20px;border:1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.35);
+}
+.card h2{margin:0 0 6px 0;font-size:18px}
+.method{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfbfb);margin-bottom:10px;border:1px solid rgba(0,0,0,0.04)}
+.method .left-meta{display:flex;gap:12px;align-items:center}
+.method .icon{width:48px;height:48px;border-radius:8px;display:grid;place-items:center;font-weight:700}
+.method .meta{line-height:1}
+.method .meta .title{font-weight:600}
+.muted{color:var(--muted);font-size:13px}
+
+.number{font-family:monospace;font-size:16px;letter-spacing:0.6px}
+button.copy{background:linear-gradient(90deg,var(--accent), #00cec9);border:0;color:white;padding:8px 12px;border-radius:8px;cursor:pointer}
+button.copy:active{transform:translateY(1px)}
+
+.qr-placeholder{height:170px;border-radius:10px;border:1px dashed rgba(0,0,0,0.08);display:grid;place-items:center;color:var(--muted)}
+
+footer.notes{margin-top:12px;color:var(--muted);font-size:13px}
+
+/* responsive */
+@media (max-width:900px){
+  .container{grid-template-columns:1fr;}
+  .left{order:2}
+  .card{order:1}
+}
+
+  </style>
+</head>
+<body>
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="container" role="main">
+    <section class="card left" aria-labelledby="title-desc">
+      <div class="brand">
+        <div class="logo">IS</div>
+        <div>
+          <h1 id="title-desc">IPUNGG SHOP — Pembayaran</h1>
+          <p class="lead">Terima kasih telah berbelanja. Pilih metode pembayaran di kanan dan salin nomor untuk melakukan transfer/pembayaran.</p>
+        </div>
+      </div><div style="margin-top:6px">
+    <p class="muted">Instruksi singkat:</p>
+    <ol style="margin:6px 0 0 18px;color:rgba(255,255,255,0.9)">
+      <li>Pilih salah satu metode di sebelah kanan (DANA / GOPAY).</li>
+      <li>Tekan tombol Salin untuk menyalin nomor rekening/angka tujuan.</li>
+      <li>Konfirmasi pembayaran ke penjual setelah transfer selesai.</li>
+    </ol>
+  </div>
+
+  <footer class="notes">Butuh QR? Anda bisa menempelkan/unggah QR pada bagian QR di kanan. Halaman ini responsif dan bisa disimpan oleh pelanggan.</footer>
+</section>
+
+<aside class="card" aria-label="Metode Pembayaran">
+  <h2>Metode Pembayaran</h2>
+
+  <!-- DANA -->
+  <div class="method" id="dana">
+    <div class="left-meta">
+      <div class="icon" style="background:linear-gradient(90deg,#0066ff,#00a8ff);color:white">D</div>
+      <div class="meta">
+        <div class="title">DANA</div>
+        <div class="muted">Nama: YOG/SAP***</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="number" id="dana-number">082124904480</div>
+      <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+        <button class="copy" data-copy="082124904480">Salin</button>
+        <button class="copy" data-copy="YOG/SAP***">Salin Nama</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOPAY -->
+  <div class="method" id="gopay">
+    <div class="left-meta">
+      <div class="icon" style="background:linear-gradient(90deg,#ff7b54,#ffb86b);color:white">G</div>
+      <div class="meta">
+        <div class="title">GOPAY</div>
+        <div class="muted">Nama: IPUNGG SHOP</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="number" id="gopay-number">08131159010</div>
+      <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+        <button class="copy" data-copy="08131159010">Salin</button>
+        <button class="copy" data-copy="IPUNGG SHOP">Salin Nama</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px">
+    <div class="muted">QR / Bukti Pembayaran</div>
+    <div class="qr-placeholder" id="qrBox">(Tempat QR atau bukti — bisa ditempel/unggah)</div>
+    <div style="margin-top:8px;display:flex;gap:8px">
+      <label style="flex:1;display:inline-flex;gap:8px;align-items:center">
+        <input type="file" id="qrUpload" accept="image/*" style="display:none">
+        <button class="copy" id="btnUpload" type="button">Unggah QR</button>
+      </label>
+      <button class="copy" id="btnClear" type="button">Hapus QR</button>
+    </div>
+  </div>
+
+  <div style="margin-top:12px">
+    <small class="muted">Catatan: simpan tangkapan layar atau kirim bukti pembayaran ke penjual untuk konfirmasi.</small>
+  </div>
+</aside>
+
+  </div>  <script>
+    // Copy to clipboard
+    document.querySelectorAll('button.copy').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const txt = btn.getAttribute('data-copy');
+        if(!txt){
+          // file upload / other buttons handled elsewhere
+          return;
+        }
+        try{
+          await navigator.clipboard.writeText(txt);
+          btn.textContent = 'Tersalin!';
+          setTimeout(()=> btn.textContent = 'Salin',1200);
+        }catch(e){
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = txt; document.body.appendChild(ta); ta.select();
+          try{ document.execCommand('copy'); btn.textContent='Tersalin!'; setTimeout(()=>btn.textContent='Salin',1200);}catch(e2){ alert('Gagal menyalin — silakan salin manual: '+txt);} ta.remove();
+        }
+      });
+    });
+
+    // Upload QR image preview
+    const upload = document.getElementById('qrUpload');
+    const btnUpload = document.getElementById('btnUpload');
+    const btnClear = document.getElementById('btnClear');
+    const qrBox = document.getElementById('qrBox');
+
+    btnUpload.addEventListener('click', ()=> upload.click());
+    upload.addEventListener('change', ()=>{
+      const f = upload.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = e=>{
+        qrBox.style.background = `white url('${e.target.result}') center/contain no-repeat`;
+        qrBox.textContent='';
+      };
+      reader.readAsDataURL(f);
+    });
+
+    btnClear.addEventListener('click', ()=>{
+      upload.value=''; qrBox.style.background='none'; qrBox.textContent='(Tempat QR atau bukti — bisa ditempel/unggah)';
+    });
+  </script></body>
+</html>
