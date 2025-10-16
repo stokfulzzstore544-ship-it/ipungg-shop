@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Page</title>
+  <title>Payment</title>
   <style>
     * {
       margin: 0;
@@ -19,6 +19,7 @@
       background-repeat: no-repeat;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       color: white;
@@ -26,16 +27,11 @@
     }
 
     .payment-box {
-      background: rgba(0, 0, 0, 0.3); /* sedikit transparan agar teks terbaca */
+      background: rgba(0, 0, 0, 0.3);
       padding: 30px 50px;
       border-radius: 15px;
       backdrop-filter: blur(3px);
-    }
-
-    h1 {
-      font-size: 40px;
       margin-bottom: 30px;
-      letter-spacing: 2px;
     }
 
     .method {
@@ -49,12 +45,28 @@
       font-weight: bold;
       color: #00ffcc;
     }
+
+    .contact {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px 30px;
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .contact a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="payment-box">
-    <h1>PAYMENT</h1>
-
     <div class="method">
       <span>DANA :</span>
       082124904480<br>
@@ -69,5 +81,11 @@
       IPUNGG SHOP
     </div>
   </div>
+
+  <div class="contact">
+    WHATSAPP ADMIN : <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a><br>
+    TELEGRAM : <a href="https://t.me/Ipung_brye" target="_blank">t.me/Ipung_brye</a><br>
+    SALURAN ADMIN : <a href="https://whatsapp.com/channel/0029Vb6wNfLBadmSKgmjdr1c" target="_blank">Klik di sini</a>
+  </div>
 </body>
-</html>
+                      </html>
